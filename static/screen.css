@@ -1,179 +1,26 @@
-  * {
-    border: 0;
-    margin: 0;
-    padding: 0;
-  }
- 
-  body {
-    margin:auto;
-    width:996px;
-    font-family: 'georgia', serif;
-    font-size: 1.0em;
-    background:#333;
-    color:#EEE;
-  }
+body {
+  font-family:sans-serif;
+  margin:auto;
+  width:600px;
+  margin-top:3em;
+}
 
-  small {
-    color:#666;
-  }
+h1 {
+  font-size:3em;
+}
 
-  a {
-    color:#FFF;
-  }
+ul.options {
+  list-style:none;
+  margin:0;
+}
 
-  a:hover {
-    color:#FFF;
-  }
+li.option {
+  margin:0;
+  margin-bottom:1em;
+  vertical-align:middle;
+  font-size:2em;
+}
 
-  a:visited {
-    color:#FFF;
-  }
-
-  .clear {
-    clear: left;
-  }
-
-  .intro {
-    padding:0.2em;
-    margin:0.2em;
-    border:1px solid #CCC;
-  }
-
-  ul.narratives {
-    list-style:none;
-  }
-
-  ul.narratives > li.button {
-    background:#EEE;
-    color:black;
-  }
-
-  ul.narratives > li.narrative {
-    margin-bottom:1em;
-    clear:left;
-  }
-
-  ul.narratives > li.narrative_dormant {
-    display:none;
-  }
-
-  ul.narratives > li.button > a {
-    display:block;
-    padding:0.2em;
-    font-size:1.2em;
-    margin-top:0.5em;
-    color:black;
-    cursor:hand;
-  }
-
-  li.narrative > .summary {
-    margin-top:0.5em;
-    margin-bottom:0.5em;
-  }
-
-  .new_count {
-    font-size:small;
-    font-weight:normal;
-    margin-left:0.2em;
-    display:inline;
-  }
-
-  .new_articles {
-    color:#EECC00;
-  }
-
-  .nonew_articles {
-    color:#666;
-  }
-
-  a.summary {
-    color:#ccc;  
-  }
-
-  li.article > a.title {
-    font-size:1.2em;
-  }
-
-  li.narrative > h2 {
-    background:#222;
-    padding:0.2em;
-  }
-
-  li.narrative_new > h2 {
-    background:#111;
-  }
-
-  li.narrative > h2 > a {
-    text-decoration:none;
-  }
-  
-  ul.searches {
-    display:none;
-    list-style:none;
-  }
-
-  ul.searches > li, li.search {
-    float: left;
-    padding:0.1em;
-    margin-left:0.1em;
-    font-size:0.8em;
-    color:#666;
-  }
- 
-  ul.articles {
-    margin-top:1em;
-    list-style:none;
-  }
-
-  li.article {
-    padding:0.25em;
-    padding-bottom:0.5em;
-  }
-
-  li.article:hover {
-  }
-
-  li.thisweek {
-    background: #222;
-  }
-
-  li.today {
-    background: #111;
-  }
-
-  li.article .date {
-    display:block;
-    float:left;
-    width:12em;
-    font-size:0.8em;
-    color:#666;
-  }
-
-  .date_tag {
-    background:#111;
-    padding:4px;
-    border-top-left-radius:4px;
-    border-top-right-radius:4px;
-  }
-
-  .read_to {
-    background:#FC0;
-    padding:0.5em;
-    color:black;
-  }
-
-  .read_to > a:link, .read_to > a:visited {
-    color:black;
-    text-decoration:none;
-  }
-
-  @media only screen and (max-device-width: 480px) {
-    body {
-      width:100%;
-      font-size:1.2em;
-    }
-
-    li.narrative > .summary {
-      display:none;
-    } 
-  }
+li.option img {
+  vertical-align:middle;
+}

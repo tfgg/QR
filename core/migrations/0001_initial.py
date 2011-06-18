@@ -8,44 +8,23 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding model 'Narrative'
-        db.create_table('core_narrative', (
+        # Adding model 'SampleModel'
+        db.create_table('core_samplemodel', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=200)),
         ))
-        db.send_create_signal('core', ['Narrative'])
-
-        # Adding model 'GuardianSearch'
-        db.create_table('core_guardiansearch', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('narrative', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['core.Narrative'])),
-            ('term', self.gf('django.db.models.fields.TextField')()),
-            ('tags', self.gf('django.db.models.fields.TextField')()),
-        ))
-        db.send_create_signal('core', ['GuardianSearch'])
+        db.send_create_signal('core', ['SampleModel'])
 
 
     def backwards(self, orm):
         
-        # Deleting model 'Narrative'
-        db.delete_table('core_narrative')
-
-        # Deleting model 'GuardianSearch'
-        db.delete_table('core_guardiansearch')
+        # Deleting model 'SampleModel'
+        db.delete_table('core_samplemodel')
 
 
     models = {
-        'core.guardiansearch': {
-            'Meta': {'object_name': 'GuardianSearch'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'narrative': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.Narrative']"}),
-            'tags': ('django.db.models.fields.TextField', [], {}),
-            'term': ('django.db.models.fields.TextField', [], {})
-        },
-        'core.narrative': {
-            'Meta': {'object_name': 'Narrative'},
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '200'})
+        'core.samplemodel': {
+            'Meta': {'object_name': 'SampleModel'},
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
         }
     }
 
