@@ -13,6 +13,7 @@
   }
 
   a:visited {
+    text-decoration:none;
     color:black;
   }
   
@@ -46,6 +47,12 @@
   ul.links > li > a {
     display:block;
   }
+
+  .print_links a {
+    margin-top:0.2em;
+    color:white;
+    display:block;
+  }
 </style>
 {% endblock %}
 
@@ -59,6 +66,8 @@
 {% endfor %}
 </ul>
 </div>
+<div class='print_links'>
 <a href='{% url poster campaign_id=campaign.id %}'>get poster</a>
 <a href='{% url stickers campaign_id=campaign.id %}'>get stickers</a>
+</div>
 {% endblock %}

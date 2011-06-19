@@ -8,7 +8,7 @@ PROJECT_PATH = os.path.abspath(os.path.split(__file__)[0])
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'database',                      # Or path to database file if using sqlite3.
+        'NAME': '/home/tgreen/webapps/qr/polls/database',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -83,7 +83,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/Users/tim/hactivate/polls/templates',
+    '/home/tgreen/webapps/qr/polls/templates',
 )
 
 INSTALLED_APPS = (

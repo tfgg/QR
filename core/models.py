@@ -12,6 +12,7 @@ from datetime import datetime
 
 def bitly_shorten(url):
   url = urllib.quote(url)
+  print url
   response = urllib2.urlopen("http://api.bitly.com/v3/shorten?login=%s&apiKey=%s&longUrl=%s&format=json" % (bitly_username, bitly_key, url))
   
   data = json.loads(response.read())
@@ -50,19 +51,22 @@ class Option(models.Model):
 class Campaign(models.Model):
   name = models.CharField(max_length=2048)
   description = models.TextField()
-  donate_link = models.CharField(max_length=2048,null=True)
+  donate_link = models.CharField(max_length=2048,blank=True,null=True)
   short_link = models.CharField(max_length=2048,blank=True,null=True)
 
-  shortcode_number = models.CharField(max_length=256,null=True)
-  shortcode_content = models.CharField(max_length=256,null=True)
+  shortcode_number = models.CharField(max_length=256,null=True,blank=True)
+  shortcode_content = models.CharField(max_length=256,null=True,blank=True)
 
   def __unicode__(self):
     return self.name
 
   def get_short_url(self):
-    print type(self.short_link)
-    if self.short_link is None:
+    print "hello", type(self.short_link)
+    self.short_link = None
+    if self.short_link is None or self.short_link == "" or len(self.short_link) == 0:
+      print "shortening"
       self.short_link = bitly_shorten(self.get_absolute_url())
+      print "shortened", self.short_link
       self.save()
 
     return self.short_link
