@@ -98,6 +98,8 @@ INSTALLED_APPS = (
     'core',
 )
 
+BASE_URL = 'http://tgreen.webfactional.com'
+
 try:
   from local_settings import *
 except ImportError:

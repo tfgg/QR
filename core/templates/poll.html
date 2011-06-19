@@ -1,0 +1,11 @@
+{% extends "page.html" %}
+
+{% block content %}
+<h1>{{ poll.question }}</h1>
+
+<ul class='options'>
+  {% for option in poll.option_set.all %}
+    <li class='option'><img src='https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl={{ option.sms }}&choe=UTF-8'/>{{ option.text }} - {{ option.votes }}</li> 
+  {% endfor %}
+</ul>
+{% endblock %}

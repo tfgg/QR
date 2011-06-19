@@ -9,3 +9,5 @@ import models
 admin.site.register(models.Poll)
 admin.site.register(models.Option)
 
+admin.site.register(models.Campaign)
+admin.site.register(models.CampaignLink)

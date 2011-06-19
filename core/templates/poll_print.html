@@ -1,0 +1,37 @@
+{% extends "page.html" %}
+
+{% block content %}
+<style>
+body {
+  margin:0;
+}
+
+ul.options {
+  border:1px solid #CCC;
+  margin:0;
+  list-style:none;
+}
+
+li.option {
+  font-size:1em;
+  border:1px solid #CCC;
+  margin:0;
+}
+</style>
+<h1>{{ poll.question }}</h1>
+
+<table style='width:100%;height:100%;'>
+{% for y in rows %}
+<tr>
+{% for x in cols %}
+<td><ul class='options'>
+  {% for option in poll.option_set.all %}
+    <li class='option'><img src='https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl={{ option.sms }}&choe=UTF-8' width="100%"/>{{ option.text }} - {{ option.votes }}</li> 
+  {% endfor %}
+</ul>
+</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

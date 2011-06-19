@@ -2,6 +2,27 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models
 
+import settings
+
+import urllib
+import urllib2
+import json
+from datetime import datetime
+
+endpoint = "http://content.guardianapis.com"
+key = "uct3rztj38km5gcnwaeqmk3z"
+
+bitly_username = "caramelcarrot"
+bitly_key = "R_4b93f4028596afc8a62dd140188d3644"
+
+def bitly_shorten(url):
+  url = urllib.quote(url)
+  response = urllib2.urlopen("http://api.bitly.com/v3/shorten?login=%s&apiKey=%s&longUrl=%s&format=json" % (bitly_username, bitly_key, url))
+  
+  data = json.loads(response.read())
+  print data 
+  return data['data']['url']
+
 class Poll(models.Model):
   question = models.TextField(default="placeholder question")
   type = models.TextField(choices=(('sms', 'SMS shortcode'),
@@ -31,3 +52,33 @@ class Option(models.Model):
   def __unicode__(self):
     return "%s - %s (%d)" % (self.poll.question, self.text, self.votes)
 
+class Campaign(models.Model):
+  name = models.CharField(max_length=2048)
+  description = models.TextField()
+  donate_link = models.CharField(max_length=2048,null=True)
+  short_link = models.CharField(max_length=2048,blank=True,null=True)
+
+  shortcode_number = models.CharField(max_length=256,null=True)
+  shortcode_content = models.CharField(max_length=256,null=True)
+
+  def __unicode__(self):
+    return self.name
+
+  def get_short_url(self):
+    print type(self.short_link)
+    if self.short_link is None:
+      self.short_link = bitly_shorten(self.get_absolute_url())
+      self.save()
+
+    return self.short_link
+
+  def get_absolute_url(self):
+    return "%s%s" % (settings.BASE_URL, reverse('campaign', kwargs={'campaign_id': self.id,}))
+
+class CampaignLink(models.Model):
+  url = models.CharField(max_length=2048)
+  name = models.CharField(max_length=2048)
+  campaign = models.ForeignKey(Campaign)
+
+  def __unicode__(self):
+    return "%s - %s" % (self.campaign.name, self.name)

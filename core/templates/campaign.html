@@ -1,0 +1,64 @@
+{% extends "page.html" %}
+
+{% block header %}
+<style>
+  body {
+    margin:0.2em;
+    background:#333;
+  }
+
+  a:link {
+    text-decoration:none;
+    color:black;
+  }
+
+  a:visited {
+    color:black;
+  }
+  
+  .campaign {
+  }
+
+  .description {
+    color:white;
+  }
+
+  h1.campaign_name {
+    color:white;
+    margin-bottom:0.2em;
+  }
+
+  ul.links {
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+
+  ul.links > li {
+    margin:0;
+    margin-bottom:0.2em;
+    background:#EEE;
+    color:black;
+    padding:0.4em;
+    border-radius:5px;
+  }
+
+  ul.links > li > a {
+    display:block;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class='campaign'>
+<h1 class='campaign_name'>{{ campaign.name }}</h1>
+<p class='description'>{{ campaign.description }}</p>
+<ul class='links'>
+{% for link in campaign.campaignlink_set.all %}
+  <li><a href='{{ link.url }}'>{{ link.name }}</a></li>
+{% endfor %}
+</ul>
+</div>
+<a href='{% url poster campaign_id=campaign.id %}'>get poster</a>
+<a href='{% url stickers campaign_id=campaign.id %}'>get stickers</a>
+{% endblock %}
