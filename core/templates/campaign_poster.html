@@ -14,8 +14,8 @@ h1 {
 p.description {
   margin:1em;
   font-size:{{ d_scale }}em;
-  margin-left:10%;
-  margin-right:10%;
+  /*margin-left:10%;
+  margin-right:10%;*/
 }
 
 p.hint, p.suggestion {
@@ -29,14 +29,11 @@ p.hint, p.suggestion {
 </head>
 <body>
 <h1>{{ campaign.name }}</h1>
-{% if compaign.shortcode_number %}<div style='float:right;margin:0.5em;'>
-<img src='https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=smsto:{{ campaign.shortcode_number }}:{{ campaign.shortcode_content }}&choe=UTF-8&chld=|0'/><p class='suggestion'>Scan to donate</p></div>{% endif %}
+{% if campaign.shortcode_number %}<div style='float:right;margin:0.5em;margin-right:0;width:150px;'>
+<img src='https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=smsto:{{ campaign.shortcode_number }}:{{ campaign.shortcode_content }}&choe=UTF-8&chld=|0'/><p class='suggestion'>Scan to donate, or text <strong>{{ campaign.shortcode_content }}</strong> to {{ campaign.shortcode_number }}</p></div>{% endif %}
 <p class='description'>{{ campaign.description }}<p>
-<p class='suggestion'>scan the code with your phone to find out more.</p>
+<div style='clear:right;'><p class='suggestion'>scan the code with your phone to find out more, or visit <strong>{{ campaign.get_short_url }}</strong>.</p>
 <center><img src='https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl={{ campaign.get_short_url }}&choe=UTF-8&chld=|0' width='60%'/></center>
-<p class='hint'>(search your phone app store for 'QR code')</p>
-{% if campaign.shortcode_number %}
-
-{% endif %}
+<p class='hint'>(search your phone app store for 'QR code')</p></div>
 </body>
 </html>
